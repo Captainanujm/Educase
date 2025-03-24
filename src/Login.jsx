@@ -14,7 +14,7 @@ const navigate=useNavigate();
       setFormData({email:"",password:""});
       navigate("/profile");
     }catch(error){
-      alert(error.response.data);
+     alert(error.response.data.message);
     }
     };
 return (
