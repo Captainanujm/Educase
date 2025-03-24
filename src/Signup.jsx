@@ -3,6 +3,7 @@ import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 const Signup = () => {
   const navigate=useNavigate();
+  const BaseUrl="https://educase-e96i.onrender.com"
     const [isAgency,setIsAgency]=useState("");
     const [formData,setFormData]=useState({
         name:"",
@@ -14,7 +15,7 @@ const Signup = () => {
 async function handleSubmit(e){
   e.preventDefault();
   try{
-    const res=await axios.post("http://localhost:3000/signup",formData);
+    const res=await axios.post(`${BaseUrl}/signup`,formData);
   alert(res.data.message);
   setFormData({ name:"",
     email:"",
@@ -40,10 +41,7 @@ async function handleSubmit(e){
             <input onChange={(e)=>{
                 setFormData({...formData,[e.target.name]:e.target.value,})
             }}
-            name="name"
-              type="text"
-              placeholder="Enter your full name"
-              required
+            name="name" type="text" placeholder="Enter your full name" required
               value={formData.name}
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
@@ -52,10 +50,7 @@ async function handleSubmit(e){
         
           <div>
             <label className="block text-gray-700 font-medium">Phone Number</label>
-            <input
-              type="number"
-               name="phone_number"
-               onChange={(e)=>{
+            <input type="number" name="phone_number" onChange={(e)=>{
                 setFormData({...formData,[e.target.name]:e.target.value,})
             }}
               placeholder="Enter your phone number"
@@ -68,13 +63,9 @@ async function handleSubmit(e){
          
           <div>
             <label className="block text-gray-700 font-medium">Email Address</label>
-            <input
-              type="email"
-              value={formData.email}
-              onChange={(e)=>{
+            <input type="email" value={formData.email} onChange={(e)=>{
                 setFormData({...formData,[e.target.name]:e.target.value,})
-            }}
-               name="email"
+            }} name="email"
               placeholder="Enter your email"
               required
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
@@ -84,14 +75,9 @@ async function handleSubmit(e){
          
           <div>
             <label className="block text-gray-700 font-medium">Password</label>
-            <input
-              type="password"
-              value={formData.password}
-               name="password"
-               onChange={(e)=>{
+            <input type="password" value={formData.password} name="password" onChange={(e)=>{
                 setFormData({...formData,[e.target.name]:e.target.value,})
-            }}
-              placeholder="Enter your password"
+            }} placeholder="Enter your password"
               required
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
@@ -100,14 +86,9 @@ async function handleSubmit(e){
 
           <div>
             <label className="block text-gray-700 font-medium">Company Name</label>
-            <input
-              type="text"
-               name="company_name"
-              value={formData.company_name}
-              onChange={(e)=>{
+            <input type="text" name="company_name" value={formData.company_name} onChange={(e)=>{
                 setFormData({...formData,[e.target.name]:e.target.value,})
-            }}
-              placeholder="Enter your company name"
+            }}placeholder="Enter your company name"
               required
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
@@ -117,12 +98,7 @@ async function handleSubmit(e){
           <div className="flex gap-6">
             
             <label className="flex items-center">
-              <input
-                type="radio"
-                name="agency"
-                value="yes"
-                checked={isAgency === "yes"}
-                onChange={(e) => setIsAgency(e.target.value)}
+              <input type="radio" name="agency" value="yes" checked={isAgency === "yes"} onChange={(e) => setIsAgency(e.target.value)}
                 className="mr-2"
               />
               Yes
@@ -130,24 +106,12 @@ async function handleSubmit(e){
 
             
             <label className="flex items-center">
-              <input
-                type="radio"
-                name="agency"
-                value="no"
-                checked={isAgency === "no"}
-                onChange={(e) => setIsAgency(e.target.value)}
-                className="mr-2"
-              />
-              No
+              <input type="radio" name="agency" value="no" checked={isAgency === "no"} onChange={(e) => setIsAgency(e.target.value)}className="mr-2"/>No
             </label>
           </div>
         </div>
          
-          <button onClick={handleSubmit}
-            type="submit"
-            className="w-full bg-purple-600 text-white py-2 rounded-md font-semibold hover:bg-purple-700 transition"
-          >
-            Sign Up
+          <button onClick={handleSubmit} type="submit" className="w-full bg-purple-600 text-white py-2 rounded-md font-semibold hover:bg-purple-700 transition">Sign Up
           </button>
          
         </form>

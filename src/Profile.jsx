@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const Profile = () => {
+function Profile() {
     const [user, setUser] = useState(null);
-
+const BaseUrl="https://educase-e96i.onrender.com"
     useEffect(() => {
         const fetchUserInfo = async () => {
             try {
@@ -12,11 +12,8 @@ const Profile = () => {
                  alert("Please Login again");
                 return;
             }
-        const response = await axios.get("http://localhost:3000/userinfo", {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
-
-                setUser(response.data);
+        const response = await axios.get(`${BaseUrl}/userinfo`, {headers: { Authorization: `Bearer ${token}` }});
+            setUser(response.data);
             }catch(error){
                 console.log("Error fetching user info:",error);
             }
@@ -30,8 +27,7 @@ const Profile = () => {
         <div className="bg-white p-6 rounded-2xl shadow-lg w-96 border border-gray-200">
             <h2 className="text-lg font-semibold text-gray-700 mb-4 border-b pb-2">Account Settings</h2>
             <div className="flex items-center space-x-4">
-                <img src="https://via.placeholder.com/80" alt="Profile" className="w-16 h-16 rounded-full border-2 border-blue-500"
-                />
+                <img src="https://via.placeholder.com/80" alt="Profile" className="w-16 h-16 rounded-full border-2 border-blue-500"/>
                 <div>
                     <h3 className="text-lg font-semibold text-gray-900">{user?.name}</h3>
                     <p className="text-gray-600">{user?.email}</p>
